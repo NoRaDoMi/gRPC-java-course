@@ -54,6 +54,16 @@ public final class Calculator {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_calculator_FindMaximumResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_calculator_SquareRootRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_calculator_SquareRootRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_calculator_SquareRootResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_calculator_SquareRootResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -73,7 +83,9 @@ public final class Calculator {
       "\001 \001(\005\")\n\026ComputeAverageResponse\022\017\n\007avera" +
       "ge\030\001 \001(\001\"$\n\022FindMaximumRequest\022\016\n\006number" +
       "\030\001 \001(\005\"&\n\023FindMaximumResponse\022\017\n\007maximum" +
-      "\030\001 \001(\0052\373\002\n\021CalculatorService\0228\n\003Sum\022\026.ca" +
+      "\030\001 \001(\005\"#\n\021SquareRootRequest\022\016\n\006number\030\001 " +
+      "\001(\005\")\n\022SquareRootResponse\022\023\n\013number_root" +
+      "\030\001 \001(\0012\312\003\n\021CalculatorService\0228\n\003Sum\022\026.ca" +
       "lculator.SumRequest\032\027.calculator.SumResp" +
       "onse\"\000\022y\n\030PrimeNumberDecomposition\022+.cal" +
       "culator.PrimeNumberDecompositionRequest\032" +
@@ -82,8 +94,10 @@ public final class Calculator {
       ".ComputeAverageRequest\032\".calculator.Comp" +
       "uteAverageResponse\"\000(\001\022T\n\013FindMaximum\022\036." +
       "calculator.FindMaximumRequest\032\037.calculat" +
-      "or.FindMaximumResponse\"\000(\0010\001B\030\n\024com.prot" +
-      "o.calculatorP\001b\006proto3"
+      "or.FindMaximumResponse\"\000(\0010\001\022M\n\nSquareRo" +
+      "ot\022\035.calculator.SquareRootRequest\032\036.calc" +
+      "ulator.SquareRootResponse\"\000B\030\n\024com.proto" +
+      ".calculatorP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -137,6 +151,18 @@ public final class Calculator {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_calculator_FindMaximumResponse_descriptor,
         new java.lang.String[] { "Maximum", });
+    internal_static_calculator_SquareRootRequest_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_calculator_SquareRootRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_calculator_SquareRootRequest_descriptor,
+        new java.lang.String[] { "Number", });
+    internal_static_calculator_SquareRootResponse_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_calculator_SquareRootResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_calculator_SquareRootResponse_descriptor,
+        new java.lang.String[] { "NumberRoot", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

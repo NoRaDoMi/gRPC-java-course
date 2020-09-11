@@ -1,7 +1,9 @@
+com/proto/calculator/SquareRootRequest.class
 com/proto/dummy/Dummy.class
 com/proto/calculator/FindMaximumRequestOrBuilder.class
 com/proto/greet/GreetManyTimeResponse$1.class
 com/proto/calculator/ComputeAverageResponse$Builder.class
+com/proto/calculator/SquareRootRequestOrBuilder.class
 com/proto/dummy/DummyServiceGrpc$DummyServiceImplBase.class
 com/proto/calculator/SumResponse.class
 com/proto/greet/GreetResponse$Builder.class
@@ -53,6 +55,7 @@ com/proto/greet/GreetEveryoneRequest.class
 com/proto/greet/Greeting$1.class
 com/proto/greet/GreetManyTimeRequestOrBuilder.class
 com/grpc/greeting/server/GreetServiceImpl$2.class
+com/proto/calculator/SquareRootResponse$Builder.class
 com/proto/dummy/DummyServiceGrpc$DummyServiceMethodDescriptorSupplier.class
 com/proto/calculator/SumRequest$Builder.class
 com/proto/greet/LongGreetRequest$1.class
@@ -85,7 +88,9 @@ com/proto/greet/GreetManyTimeRequest.class
 com/proto/greet/GreetManyTimeResponseOrBuilder.class
 com/proto/calculator/CalculatorServiceGrpc$2.class
 com/proto/calculator/ComputeAverageRequest$Builder.class
+com/proto/calculator/SquareRootRequest$1.class
 com/proto/calculator/FindMaximumResponse$Builder.class
+com/proto/calculator/SquareRootResponseOrBuilder.class
 com/proto/calculator/PrimeNumberDecompositionResponse.class
 com/proto/calculator/SumResponseOrBuilder.class
 com/proto/greet/GreetServiceGrpc$MethodHandlers.class
@@ -94,6 +99,7 @@ com/proto/greet/GreetResponse.class
 com/proto/greet/GreetRequest$Builder.class
 com/proto/greet/GreetServiceGrpc$GreetServiceStub.class
 com/proto/greet/GreetRequest$1.class
+com/proto/calculator/SquareRootRequest$Builder.class
 com/grpc/greeting/server/GreetServiceImpl.class
 com/proto/dummy/DummyMessage.class
 com/proto/dummy/DummyServiceGrpc$DummyServiceBlockingStub.class
@@ -119,5 +125,7 @@ com/proto/greet/Greet.class
 com/proto/calculator/CalculatorServiceGrpc$CalculatorServiceMethodDescriptorSupplier.class
 com/grpc/calculator/client/CalculatorClient.class
 com/proto/calculator/FindMaximumResponseOrBuilder.class
+com/proto/calculator/SquareRootResponse.class
+com/proto/calculator/SquareRootResponse$1.class
 com/proto/calculator/CalculatorServiceGrpc$CalculatorServiceBaseDescriptorSupplier.class
 com/proto/dummy/DummyServiceGrpc$DummyServiceFileDescriptorSupplier.class
