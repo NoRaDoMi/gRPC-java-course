@@ -13,7 +13,7 @@ public class GreetServiceImpl extends GreetServiceGrpc.GreetServiceImplBase {
     String result = "Hello " + firstName;
     GreetResponse greetResponse = GreetResponse.newBuilder().setResult(result).build();
 
-    //    Now we should return reponse to client, but we can write return response
+    //    Now we should return response to client, but we can write return response
     //    because server are async -> using StreamObserver to return response
 
     //    send back the response
@@ -46,30 +46,54 @@ public class GreetServiceImpl extends GreetServiceGrpc.GreetServiceImplBase {
   @Override
   public StreamObserver<LongGreetRequest> longGreet(
       StreamObserver<LongGreetResponse> responseObserver) {
-    StreamObserver<LongGreetRequest> streamObserverRequest =
-        new StreamObserver<LongGreetRequest>() {
+    return new StreamObserver<LongGreetRequest>() {
 
-          String result = "";
+      String result = "";
 
-          @Override
-          public void onNext(LongGreetRequest longGreetRequest) {
-            // client send a message
-            result += "Hello " + longGreetRequest.getGreeting().getFirstName() + " !";
-          }
+      @Override
+      public void onNext(LongGreetRequest longGreetRequest) {
+        // client send a message
+        result += "Hello " + longGreetRequest.getGreeting().getFirstName() + " !";
+      }
 
-          @Override
-          public void onError(Throwable throwable) {
-            // client send an error
-          }
+      @Override
+      public void onError(Throwable throwable) {
+        // client send an error
+      }
 
-          @Override
-          public void onCompleted() {
-            // client is done
-            responseObserver.onNext(LongGreetResponse.newBuilder().setResult(result).build());
-            // this is when we return a response using responseObserver
-            responseObserver.onCompleted();
-          }
-        };
-    return streamObserverRequest;
+      @Override
+      public void onCompleted() {
+        // client is done -> onNext is called one time.
+        responseObserver.onNext(LongGreetResponse.newBuilder().setResult(result).build());
+        // this is when we return a response using responseObserver
+        responseObserver.onCompleted();
+      }
+    };
+  }
+
+  @Override
+  public StreamObserver<GreetEveryoneRequest> greetEveryone(
+      StreamObserver<GreetEveryoneResponse> responseObserver) {
+    return new StreamObserver<GreetEveryoneRequest>() {
+      @Override
+      public void onNext(GreetEveryoneRequest greetEveryoneRequest) {
+        String response = "Hello " + greetEveryoneRequest.getGreeting().getFirstName();
+        GreetEveryoneResponse greetEveryoneResponse =
+            GreetEveryoneResponse.newBuilder().setResult(response).build();
+
+        // call many time
+        responseObserver.onNext(greetEveryoneResponse);
+      }
+
+      @Override
+      public void onError(Throwable throwable) {
+        // do nothing
+      }
+
+      @Override
+      public void onCompleted() {
+        responseObserver.onCompleted();
+      }
+    };
   }
 }
