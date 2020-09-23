@@ -57,8 +57,7 @@ public class CalculatorServiceImpl extends CalculatorServiceGrpc.CalculatorServi
       public void onCompleted() {
         // client send done
         double average = (double) (sum) / nums;
-        responseObserver.onNext(
-            ComputeAverageResponse.newBuilder().setAverage(average).build());
+        responseObserver.onNext(ComputeAverageResponse.newBuilder().setAverage(average).build());
         responseObserver.onCompleted();
       }
     };

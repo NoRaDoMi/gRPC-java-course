@@ -7,9 +7,11 @@ import io.grpc.stub.StreamObserver;
 public class GreetServiceImpl extends GreetServiceGrpc.GreetServiceImplBase {
   @Override
   public void greet(GreetRequest request, StreamObserver<GreetResponse> responseObserver) {
+
     //   extract the fields we need
     Greeting greeting = request.getGreeting();
     String firstName = greeting.getFirstName();
+    System.out.println("Received a request with name="+firstName);
 
     String result = "Hello " + firstName;
     GreetResponse greetResponse = GreetResponse.newBuilder().setResult(result).build();
@@ -107,11 +109,10 @@ public class GreetServiceImpl extends GreetServiceGrpc.GreetServiceImplBase {
 
     try {
       for (int i = 0; i < 3; i++) {
-        if(!current.isCancelled()){
+        if (!current.isCancelled()) {
           System.out.println("sleep for 100 ms");
           Thread.sleep(100);
-        }
-        else{
+        } else {
           return;
         }
       }

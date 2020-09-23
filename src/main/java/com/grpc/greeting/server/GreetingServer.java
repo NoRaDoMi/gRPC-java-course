@@ -12,14 +12,14 @@ public class GreetingServer {
     System.out.println("Hello gRPC");
 
     //    plaintext server
-    //    Server server = ServerBuilder.forPort(50051).addService(new GreetServiceImpl()).build();
+        Server server = ServerBuilder.forPort(5001).addService(new GreetServiceImpl()).build();
 
     //    secure server
-    Server server =
-        ServerBuilder.forPort(50051)
-            .addService(new GreetServiceImpl())
-            .useTransportSecurity(new File("ssl/server.crt"), new File(("ssl/server.pem")))
-            .build();
+//    Server server =
+//        ServerBuilder.forPort(50051)
+//            .addService(new GreetServiceImpl())
+//            .useTransportSecurity(new File("ssl/server.crt"), new File(("ssl/server.pem")))
+//            .build();
 
     server.start();
 
