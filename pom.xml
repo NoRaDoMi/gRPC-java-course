@@ -24,18 +24,25 @@
             <artifactId>grpc-stub</artifactId>
             <version>1.31.1</version>
         </dependency>
+<<<<<<< HEAD
+=======
+        <!-- https://mvnrepository.com/artifact/io.grpc/grpc-services -->
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-services</artifactId>
             <version>1.31.1</version>
         </dependency>
 
+<<<<<<< HEAD
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
             <version>3.12.7</version>
         </dependency>
 
+=======
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
     </dependencies>
 
     <build>

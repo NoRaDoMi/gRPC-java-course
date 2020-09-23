@@ -99,10 +99,22 @@ com/proto/greet/GreetManyTimeResponse$1.class
 com/proto/calculator/ComputeAverageResponse$Builder.class
 com/proto/dummy/DummyServiceGrpc$DummyServiceImplBase.class
 com/proto/calculator/SumResponse.class
+<<<<<<< HEAD
 com/proto/blog/DeleteBlogRequest$1.class
+=======
+com/proto/helloworld/GreeterGrpc$GreeterStub.class
+com/proto/greet/GreetResponse$Builder.class
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
 com/proto/dummy/DummyServiceGrpc$DummyServiceFutureStub.class
 com/proto/calculator/ComputeAverageResponse.class
 com/proto/greet/GreetResponseOrBuilder.class
+<<<<<<< HEAD
+=======
+com/proto/greet/GreetEveryoneResponse$Builder.class
+com/proto/dummy/DummyServiceGrpc$DummyServiceStub.class
+com/proto/helloworld/GreeterGrpc$3.class
+com/proto/calculator/CalculatorServiceGrpc.class
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
 com/grpc/calculator/server/CalculatorServiceImpl.class
 com/proto/calculator/PrimeNumberDecompositionRequest$Builder.class
 com/grpc/calculator/server/CalculatorServiceImpl$2.class
@@ -118,7 +130,14 @@ com/proto/calculator/PrimeNumberDecompositionRequest.class
 com/grpc/calculator/client/CalculatorClient$2.class
 com/proto/greet/GreetWithDeadlineRequestOrBuilder.class
 com/proto/dummy/DummyServiceGrpc$1.class
+<<<<<<< HEAD
 com/proto/helloworld/HelloReply.class
+=======
+com/proto/greet/GreetServiceGrpc$2.class
+com/proto/greet/GreetManyTimeResponse.class
+com/proto/helloworld/HelloReply.class
+com/proto/greet/GreetingOrBuilder.class
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
 com/proto/greet/Greeting$Builder.class
 com/proto/greet/GreetRequest.class
 com/proto/dummy/DummyMessage$Builder.class
@@ -131,56 +150,106 @@ com/grpc/greeting/client/GreetingClient.class
 com/proto/blog/CreateBlogResponseOrBuilder.class
 com/grpc/greeting/server/GreetServiceImpl$1.class
 com/proto/calculator/PrimeNumberDecompositionResponse$Builder.class
+<<<<<<< HEAD
 com/proto/blog/DeleteBlogRequestOrBuilder.class
 com/proto/blog/BlogServiceGrpc$BlogServiceImplBase.class
 com/proto/helloworld/HelloRequest$1.class
 com/proto/calculator/CalculatorServiceGrpc$3.class
 com/proto/blog/DeleteBlogResponse$1.class
 com/grpc/blog/server/BlogServiceImpl.class
+=======
+com/proto/helloworld/HelloRequest$1.class
+com/proto/calculator/CalculatorServiceGrpc$CalculatorServiceBlockingStub.class
+com/proto/calculator/CalculatorServiceGrpc$3.class
+com/proto/helloworld/HelloReply$1.class
+com/proto/greet/GreetServiceGrpc$1.class
+com/proto/dummy/DummyMessageOrBuilder.class
+com/proto/dummy/DummyServiceGrpc.class
+com/proto/calculator/CalculatorServiceGrpc$CalculatorServiceStub.class
+com/proto/calculator/SumRequest.class
+com/proto/greet/Greeting.class
+com/proto/greet/GreetServiceGrpc.class
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
 com/proto/greet/GreetEveryoneRequest.class
 com/proto/blog/ReadBlogResponse$Builder.class
 com/proto/greet/GreetManyTimeRequestOrBuilder.class
+<<<<<<< HEAD
 com/proto/blog/ListBlogResponse$Builder.class
 com/proto/helloworld/GreeterGrpc$GreeterBaseDescriptorSupplier.class
+=======
+com/proto/helloworld/GreeterGrpc$GreeterImplBase.class
+com/proto/helloworld/GreeterGrpc$GreeterBaseDescriptorSupplier.class
+com/grpc/greeting/server/GreetServiceImpl$2.class
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
 com/proto/calculator/SquareRootResponse$Builder.class
 com/proto/blog/BlogOrBuilder.class
 com/proto/greet/LongGreetRequest$1.class
 com/proto/calculator/ComputeAverageResponseOrBuilder.class
 com/proto/calculator/CalculatorServiceGrpc$CalculatorServiceFileDescriptorSupplier.class
 com/proto/greet/GreetRequestOrBuilder.class
+<<<<<<< HEAD
 com/proto/helloworld/RepeatHelloRequestOrBuilder.class
 com/proto/blog/UpdateBlogRequest$Builder.class
 com/proto/blog/Blog$1.class
 com/proto/blog/UpdateBlogResponseOrBuilder.class
 com/proto/helloworld/GreeterGrpc$GreeterMethodDescriptorSupplier.class
+=======
+com/proto/dummy/DummyServiceGrpc$DummyServiceBaseDescriptorSupplier.class
+com/proto/helloworld/GreeterGrpc$GreeterMethodDescriptorSupplier.class
+com/proto/greet/GreetManyTimeRequest$Builder.class
+com/proto/greet/GreetServiceGrpc$GreetServiceImplBase.class
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
 com/grpc/greeting/client/GreetingClient$2.class
 com/proto/blog/BlogServiceGrpc$BlogServiceFutureStub.class
 com/proto/greet/GreetEveryoneResponse.class
 com/proto/greet/LongGreetResponse$Builder.class
 com/proto/greet/GreetWithDeadlineRequest$1.class
+com/proto/helloworld/GreeterGrpc$GreeterFutureStub.class
 com/proto/greet/LongGreetResponse$1.class
 com/proto/helloworld/GreeterGrpc$GreeterFutureStub.class
 com/proto/calculator/Calculator.class
 com/proto/calculator/SumResponse$1.class
 com/proto/greet/GreetEveryoneResponseOrBuilder.class
+<<<<<<< HEAD
 com/proto/greet/GreetServiceGrpc$GreetServiceBaseDescriptorSupplier.class
 com/proto/calculator/CalculatorServiceGrpc$MethodHandlers.class
 com/proto/greet/GreetServiceGrpc$3.class
 com/proto/helloworld/HelloReplyOrBuilder.class
 com/proto/blog/CreateBlogRequest.class
+=======
+com/proto/helloworld/HelloRequest$Builder.class
+com/proto/calculator/ComputeAverageRequestOrBuilder.class
+com/proto/calculator/SumRequestOrBuilder.class
+com/proto/greet/GreetServiceGrpc$GreetServiceBaseDescriptorSupplier.class
+com/proto/calculator/CalculatorServiceGrpc$MethodHandlers.class
+com/proto/dummy/DummyServiceGrpc$2.class
+com/proto/helloworld/HelloRequest.class
+com/proto/greet/GreetServiceGrpc$3.class
+com/proto/helloworld/HelloReplyOrBuilder.class
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
 com/proto/greet/GreetWithDeadlineRequest.class
 com/proto/greet/GreetEveryoneResponse$1.class
 com/proto/calculator/PrimeNumberDecompositionResponse$1.class
 com/grpc/calculator/client/CalculatorClient$1.class
+<<<<<<< HEAD
 com/proto/blog/ReadBlogRequest.class
 com/proto/blog/ListBlogRequest.class
 com/proto/blog/ReadBlogResponse$1.class
+=======
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
 com/proto/helloworld/GreeterGrpc$MethodHandlers.class
 com/proto/greet/GreetWithDeadlineResponse$Builder.class
 com/proto/blog/UpdateBlogRequest.class
 com/proto/dummy/DummyServiceGrpc$MethodHandlers.class
+<<<<<<< HEAD
 com/proto/blog/UpdateBlogRequestOrBuilder.class
 com/proto/calculator/ComputeAverageResponse$1.class
+=======
+com/proto/helloworld/HelloRequestOrBuilder.class
+com/proto/calculator/ComputeAverageResponse$1.class
+com/proto/greet/GreetManyTimeRequest.class
+com/proto/greet/GreetManyTimeResponseOrBuilder.class
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
 com/proto/helloworld/GreeterGrpc$2.class
 com/proto/calculator/CalculatorServiceGrpc$2.class
 com/proto/blog/ListBlogRequest$1.class
@@ -195,7 +264,10 @@ com/grpc/greeting/server/GreetServiceImpl.class
 com/proto/calculator/SquareRootRequest$Builder.class
 com/proto/blog/ReadBlogResponse.class
 com/proto/dummy/DummyMessage.class
+<<<<<<< HEAD
 com/proto/blog/BlogServiceGrpc$2.class
+=======
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
 com/proto/helloworld/GreeterGrpc.class
 com/proto/dummy/DummyServiceGrpc$DummyServiceBlockingStub.class
 com/proto/blog/ReadBlogRequestOrBuilder.class
@@ -204,16 +276,28 @@ com/proto/greet/GreetManyTimeResponse$Builder.class
 com/proto/calculator/FindMaximumRequest.class
 com/proto/calculator/PrimeNumberDecompositionResponseOrBuilder.class
 com/proto/greet/GreetResponse$1.class
+<<<<<<< HEAD
+=======
+com/proto/helloworld/Helloworld.class
+com/proto/calculator/FindMaximumRequest$1.class
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
 com/proto/helloworld/GreeterGrpc$GreeterBlockingStub.class
 com/proto/greet/GreetServiceGrpc$GreetServiceFutureStub.class
 com/proto/calculator/ComputeAverageRequest$1.class
+<<<<<<< HEAD
+=======
+com/proto/helloworld/GreeterGrpc$GreeterFileDescriptorSupplier.class
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
 com/proto/helloworld/HelloReply$Builder.class
 com/grpc/greeting/server/GreetingServer.class
 com/proto/calculator/PrimeNumberDecompositionRequestOrBuilder.class
 com/proto/greet/GreetServiceGrpc$GreetServiceBlockingStub.class
 com/proto/greet/GreetEveryoneRequestOrBuilder.class
 com/proto/calculator/SumResponse$Builder.class
+<<<<<<< HEAD
 com/proto/blog/BlogServiceGrpc$BlogServiceStub.class
+=======
+>>>>>>> 2ff7e575605b05627b097b5a5492a11434bacbb0
 com/proto/helloworld/GreeterGrpc$1.class
 com/proto/calculator/CalculatorServiceGrpc$1.class
 com/proto/greet/Greet.class

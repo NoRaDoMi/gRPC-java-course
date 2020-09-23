@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<!-- saved from url=(0096)https://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/ -->
+<html lang="en" class="wf-ruda-n7-active wf-ruda-n9-active wf-ruda-n4-active wf-merriweather-n4-active wf-firamono-n4-active wf-merriweather-n3-active wf-merriweather-n7-active wf-active" style="transform: none;"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><style type="text/css" id="dark-mode-custom-style"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Hướng dẫn tích hợp gRPC-Web vào React JS app</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" type="text/css" href="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/main.css">
+
+    <link rel="shortcut icon" href="https://engineering.zalopay.vn/favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/amp/">
+    
+    <meta property="og:site_name" content="ZaloPay Engineering">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Hướng dẫn tích hợp gRPC-Web vào React JS app">
+    <meta property="og:description" content="Bài viết này sẽ trả lời cho các câu hỏi gRPC-Web là gì? Tại sao cần sử dụng nó? Và cách sử dụng gRPC-Web trong một ứng dụng React JS như thế nào thông qua một demo nho nhỏ. Ok, bắt đầu thôi nào! Tại sao chọn gRPC? Từ khi">
+    <meta property="og:url" content="http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/">
+    <meta property="og:image" content="http://engineering.zalopay.vn/content/images/2020/09/react-grpc-web.png">
+    <meta property="article:published_time" content="2020-09-17T04:38:10.000Z">
+    <meta property="article:modified_time" content="2020-09-17T10:08:18.000Z">
+    <meta property="article:tag" content="grpc-web">
+    <meta property="article:tag" content="grpc">
+    <meta property="article:tag" content="reactjs">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hướng dẫn tích hợp gRPC-Web vào React JS app">
+    <meta name="twitter:description" content="Bài viết này sẽ trả lời cho các câu hỏi gRPC-Web là gì? Tại sao cần sử dụng nó? Và cách sử dụng gRPC-Web trong một ứng dụng React JS như thế nào thông qua một demo nho nhỏ. Ok, bắt đầu thôi nào! Tại sao chọn gRPC? Từ khi">
+    <meta name="twitter:url" content="http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/">
+    <meta name="twitter:image" content="http://engineering.zalopay.vn/content/images/2020/09/react-grpc-web.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Tống Duy Tân">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="grpc-web, grpc, reactjs">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="846">
+    
+    <script src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/webfont.js" type="text/javascript" async=""></script><script type="text/javascript" async="" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/analytics.js"></script><script async="" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/default" charset="UTF-8" crossorigin="*"></script><script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "ZaloPay Engineering",
+        "logo": "http://engineering.zalopay.vn/favicon.ico"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Tống Duy Tân",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://engineering.zalopay.vn/content/images/2020/09/13793578.jpeg",
+            "width": 455,
+            "height": 455
+        },
+        "url": "http://engineering.zalopay.vn/author/tantd/",
+        "sameAs": [
+            "https://ozuit.github.io"
+        ]
+    },
+    "headline": "Hướng dẫn tích hợp gRPC-Web vào React JS app",
+    "url": "http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/",
+    "datePublished": "2020-09-17T04:38:10.000Z",
+    "dateModified": "2020-09-17T10:08:18.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://engineering.zalopay.vn/content/images/2020/09/react-grpc-web.png",
+        "width": 2000,
+        "height": 846
+    },
+    "keywords": "grpc-web, grpc, reactjs",
+    "description": "Bài viết này sẽ trả lời cho các câu hỏi gRPC-Web là gì? Tại sao cần sử dụng nó? Và cách sử dụng gRPC-Web trong một ứng dụng React JS như thế nào thông qua một demo nho nhỏ. Ok, bắt đầu thôi nào! Tại sao chọn gRPC? Từ khi",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://engineering.zalopay.vn/"
+    }
+}
+    </script>
+
+    <script src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/ghost-sdk.min.js"></script>
+<script>
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "404c2ad841f6"
+});
+</script>
+    <meta name="generator" content="Ghost 2.9">
+    <link rel="alternate" type="application/rss+xml" title="ZaloPay Engineering" href="http://engineering.zalopay.vn/rss/">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-141214835-1');
+</script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5e1d2d447e39ea1242a474e4/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+<link rel="stylesheet" href="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/css" media="all"><script src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/embed.js" data-timestamp="1600674751454"></script><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.6525595c7a9874fa10bd041275e40f17.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.e07f4f02bedd02259fb3f3e092970560.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.51278703436d1d8217428010be85cb48.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"><style type="text/css">@keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-moz-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-webkit-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}#fhxnGPT-1600674760723{outline:none!important;visibility:visible!important;resize:none!important;box-shadow:none!important;overflow:visible!important;background:none!important;opacity:1!important;filter:alpha(opacity=100)!important;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity1)!important;-moz-opacity:1!important;-khtml-opacity:1!important;top:auto!important;right:10px!important;bottom:90px!important;left:auto!important;position:fixed!important;border:0!important;min-height:0!important;min-width:0!important;max-height:none!important;max-width:none!important;padding:0!important;margin:0!important;-moz-transition-property:none!important;-webkit-transition-property:none!important;-o-transition-property:none!important;transition-property:none!important;transform:none!important;-webkit-transform:none!important;-ms-transform:none!important;width:auto!important;height:auto!important;display:none!important;z-index:2000000000!important;background-color:transparent!important;cursor:auto!important;float:none!important;border-radius:unset!important;pointer-events:auto!important}#rnLtKal-1600674760732.open{animation : tawkMaxOpen .25s ease!important;}</style><script src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/alfalfalfa.0823c767a3bc925f628afd9bed26c958.js" async="" charset="UTF-8"></script><script async="" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/default(1)" charset="UTF-8" crossorigin="*" id="TawkScript-1600677004195"></script><style id="theia-sticky-sidebar-stylesheet-TSS">.theiaStickySidebar:after {content: ""; display: table; clear: both;}</style><style type="text/css">@keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-moz-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-webkit-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}#SyDG4ma-1600677004422{outline:none!important;visibility:visible!important;resize:none!important;box-shadow:none!important;overflow:visible!important;background:none!important;opacity:1!important;filter:alpha(opacity=100)!important;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity1)!important;-moz-opacity:1!important;-khtml-opacity:1!important;top:auto!important;right:10px!important;bottom:90px!important;left:auto!important;position:fixed!important;border:0!important;min-height:0!important;min-width:0!important;max-height:none!important;max-width:none!important;padding:0!important;margin:0!important;-moz-transition-property:none!important;-webkit-transition-property:none!important;-o-transition-property:none!important;transition-property:none!important;transform:none!important;-webkit-transform:none!important;-ms-transform:none!important;width:auto!important;height:auto!important;display:none!important;z-index:2000000000!important;background-color:transparent!important;cursor:auto!important;float:none!important;border-radius:unset!important;pointer-events:auto!important}#HaDfW4f-1600677004423.open{animation : tawkMaxOpen .25s ease!important;}</style><script async="" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/default(1)" charset="UTF-8" crossorigin="*" id="TawkScript-1600680437604"></script><style type="text/css">@keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-moz-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-webkit-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}#zeJumon-1600680437650{outline:none!important;visibility:visible!important;resize:none!important;box-shadow:none!important;overflow:visible!important;background:none!important;opacity:1!important;filter:alpha(opacity=100)!important;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity1)!important;-moz-opacity:1!important;-khtml-opacity:1!important;top:auto!important;right:10px!important;bottom:90px!important;left:auto!important;position:fixed!important;border:0!important;min-height:0!important;min-width:0!important;max-height:none!important;max-width:none!important;padding:0!important;margin:0!important;-moz-transition-property:none!important;-webkit-transition-property:none!important;-o-transition-property:none!important;transition-property:none!important;transform:none!important;-webkit-transform:none!important;-ms-transform:none!important;width:auto!important;height:auto!important;display:none!important;z-index:2000000000!important;background-color:transparent!important;cursor:auto!important;float:none!important;border-radius:unset!important;pointer-events:auto!important}#LfrxxwL-1600680437652.open{animation : tawkMaxOpen .25s ease!important;}</style><script async="" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/default(1)" charset="UTF-8" crossorigin="*" id="TawkScript-1600683232158"></script><style type="text/css">@keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-moz-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-webkit-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}#gy2I1mi-1600683232201{outline:none!important;visibility:visible!important;resize:none!important;box-shadow:none!important;overflow:visible!important;background:none!important;opacity:1!important;filter:alpha(opacity=100)!important;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity1)!important;-moz-opacity:1!important;-khtml-opacity:1!important;top:auto!important;right:10px!important;bottom:90px!important;left:auto!important;position:fixed!important;border:0!important;min-height:0!important;min-width:0!important;max-height:none!important;max-width:none!important;padding:0!important;margin:0!important;-moz-transition-property:none!important;-webkit-transition-property:none!important;-o-transition-property:none!important;transition-property:none!important;transform:none!important;-webkit-transform:none!important;-ms-transform:none!important;width:auto!important;height:auto!important;display:none!important;z-index:2000000000!important;background-color:transparent!important;cursor:auto!important;float:none!important;border-radius:unset!important;pointer-events:auto!important}#Uq6PIIO-1600683232202.open{animation : tawkMaxOpen .25s ease!important;}</style></head>
+<body class="is-article clickup-chrome-ext_installed" data-page="http://engineering.zalopay.vn" cz-shortcut-listen="true" style="transform: none;">
+
+    <header class="header u-sizeFullWidth u-bgColor">
+    <div class="header-wrap u-flexCenter u-relative">
+
+        <a class="header-logo u-inlineBlock u-flex0" href="http://engineering.zalopay.vn/">
+            <span class="u-fontSizeLarge u-fontWeightBolder">ZaloPay Engineering</span>
+        </a>
+
+        <nav class="nav u-flex u-flex1 u-paddingLeft20 u-flexCenter u-hide-before-md"><ul class="u-unstyled u-flex1">
+        <li class="mapache-tracking">
+            <a href="http://engineering.zalopay.vn/" class="navigation-link u-fontSize15 u-fontWeightSemibold u-block ">Home</a>
+        </li>
+        <li class="mapache-tracking">
+            <a href="http://engineering.zalopay.vn/tag/database/" class="navigation-link u-fontSize15 u-fontWeightSemibold u-block ">Databases</a>
+        </li>
+        <li class="mapache-tracking">
+            <a href="http://engineering.zalopay.vn/tag/distributed-system/" class="navigation-link u-fontSize15 u-fontWeightSemibold u-block ">Distributed</a>
+        </li>
+        <li class="mapache-tracking">
+            <a href="http://engineering.zalopay.vn/tag/talks/" class="navigation-link u-fontSize15 u-fontWeightSemibold u-block ">Talks</a>
+        </li>
+        <li class="mapache-tracking">
+            <a href="http://engineering.zalopay.vn/tag/programming/" class="navigation-link u-fontSize15 u-fontWeightSemibold u-block ">Programming</a>
+        </li>
+        <li class="mapache-tracking">
+            <a href="http://engineering.zalopay.vn/tag/productivity/" class="navigation-link u-fontSize15 u-fontWeightSemibold u-block ">Productivity</a>
+        </li>
+</ul>
+</nav>
+
+        <div class="header-left u-flex0 u-flex u-flexEnd u-fontSize21">
+
+            
+            
+
+            <div class="followMe follow-more u-hide-before-md"></div>
+
+
+            <a href="https://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/#" class="follow-toggle u-relative u-fontSizeLarge u-hide u-hide-before-md i-more"></a>
+            <span class="header-line u-hide-before-md"></span>
+            <a href="https://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/#" class="search-toggle u-relative i-search"></a>
+            <a href="https://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/#" class="menu--toggle u-relative u-hide-after-md"><span></span><span></span><span></span></a>
+
+        </div>
+    </div>
+
+    <aside class="sideNav u-absolute0 u-hide-after-md u-bgColor">
+    <div class="sideNav-wrap u-absolute0">
+        <nav class="sideNav-menu"><ul class="u-unstyled u-flex1">
+        <li class="mapache-tracking">
+            <a href="http://engineering.zalopay.vn/" class="navigation-link u-fontSize15 u-fontWeightSemibold u-block ">Home</a>
+        </li>
+        <li class="mapache-tracking">
+            <a href="http://engineering.zalopay.vn/tag/database/" class="navigation-link u-fontSize15 u-fontWeightSemibold u-block ">Databases</a>
+        </li>
+        <li class="mapache-tracking">
+            <a href="http://engineering.zalopay.vn/tag/distributed-system/" class="navigation-link u-fontSize15 u-fontWeightSemibold u-block ">Distributed</a>
+        </li>
+        <li class="mapache-tracking">
+            <a href="http://engineering.zalopay.vn/tag/talks/" class="navigation-link u-fontSize15 u-fontWeightSemibold u-block ">Talks</a>
+        </li>
+        <li class="mapache-tracking">
+            <a href="http://engineering.zalopay.vn/tag/programming/" class="navigation-link u-fontSize15 u-fontWeightSemibold u-block ">Programming</a>
+        </li>
+        <li class="mapache-tracking">
+            <a href="http://engineering.zalopay.vn/tag/productivity/" class="navigation-link u-fontSize15 u-fontWeightSemibold u-block ">Productivity</a>
+        </li>
+</ul>
+</nav>
+
+        <div class="sideNav-follow followMe u-fontSize20 u-paddingTop20 u-paddingLeft20 u-paddingRight20">
+            
+            
+        </div>
+    </div>
+</aside>
+
+</header>
+
+    <main class="main u-relative" style="transform: none;">
+<section class="post extreme-container u-marginTop30 u-marginBottom40" style="transform: none;">
+    <div class="row" style="transform: none;">
+        
+        <div class="col-left" style="transform: none;">
+            
+<div class="post-header">
+    
+        <div class="post-primary-tag u-marginBottom10 u-hide u-fontWeightBolder cover-category">
+            <a href="https://engineering.zalopay.vn/tag/grpc-web/" title="grpc-web">grpc-web</a>
+        </div>
+    
+
+    <h1 class="post-title u-fontSize40 u-contentTitle u-md-fontSizeLarger">Hướng dẫn tích hợp gRPC-Web vào React JS app</h1>
+
+</div>
+
+
+            
+<div class="post-author u-flex u-flexCenter u-marginTop20">
+    <div class="u-flex0">
+        <a href="https://engineering.zalopay.vn/author/tantd/" style="background-image:url(/content/images/2020/09/13793578.jpeg)" class="avatar-image avatar-image--smaller u-backgroundSizeCover u-relative "></a>
+    </div>
+
+    <div class="u-paddingLeft15 u-textColorNormal u-flex1 u-fontSizeSmaller u-lineHeight1">
+
+        <div class="u-block">
+            <time class="datetime" datetime=" 2020-09-17 ">Published 4 days ago</time>
+            <span class="point">—</span>
+            <span class="readingTime">4 min read</span>
+        </div>
+
+
+        <div class="u-block u-paddingTop5">
+            By <a href="https://engineering.zalopay.vn/author/tantd/" class="mapache-tracking link link--underline u-fontWeightBold u-textColorDarker" title="Posts by Tống Duy Tân" data-event-category="Article" data-event-action="Author - Tống Duy Tân" data-event-label="Profile" data-event-non-interaction="1">Tống Duy Tân</a>
+
+            
+            
+        </div>
+
+    </div>
+</div>
+
+
+
+                <figure class="post-image u-block u-marginAuto u-maxWidth1000">
+                    <img src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/react-grpc-web.png" class="u-block u-marginAuto" alt="Hướng dẫn tích hợp gRPC-Web vào React JS app" data-action="zoom">
+                </figure>
+
+
+            
+<article class="post-body u-relative" style="transform: none;">
+    <div class="sharePost u-textAlignCenter u-hide-before-lg" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+    
+    
+    
+    
+    
+    
+<div class="theiaStickySidebar" style="padding-top: 1px; padding-bottom: 1px; position: static; transform: none; left: 335px; top: 0px;"><a href="https://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/#" class="mapache-share button--circle i-facebook bg-facebook u-fontSize20" data-share="facebook" data-url="http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/"></a><a href="https://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/#" class="mapache-share button--circle i-twitter bg-twitter u-fontSize20" data-share="twitter" data-url="http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/" data-title="Hướng dẫn tích hợp gRPC-Web vào React JS app "></a><a href="https://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/#" class="mapache-share button--circle i-reddit bg-reddit u-fontSize20" data-share="reddit" data-url="http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/"></a><a href="https://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/#" class="mapache-share button--circle i-linkedin bg-linkedin u-fontSize20" data-share="linkedin" data-url="http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/"></a><a href="https://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/#" class="mapache-share button--circle i-pinterest bg-pinterest u-fontSize20" data-share="pinterest" data-url="http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/" data-title="Hướng dẫn tích hợp gRPC-Web vào React JS app"></a></div></div>
+
+    <div class="post-body-wrap">
+        <p>Bài viết này sẽ trả lời cho các câu hỏi gRPC-Web là gì? Tại sao cần sử dụng nó? Và cách sử dụng gRPC-Web trong một ứng dụng React JS như thế nào thông qua một demo nho nhỏ. Ok, bắt đầu thôi nào!</p>
+<h1 id="tisaochngrpc">Tại sao chọn gRPC?</h1>
+<p>Từ khi bắt đầu lập trình ứng dụng web / mobile mình đã biết đến những ưu điểm tuyệt vời của REST so với SOAP trong việc giao tiếp với backend thông qua APIs, vì thế mà mình chỉ sử dụng mỗi REST nhưng gần đây mình có tìm hiểu thêm về RPC - một kiến trúc API khác được thiết kế tập trung vào action thay vì resource như REST.<br>
+<img src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/io14pagxwlknvggc3tko.png" alt="io14pagxwlknvggc3tko" data-action="zoom"><br>
+Chắc hẳn các bạn cũng sẽ tự đặt ra cho mình câu hỏi "tại sao lại phải chuyển qua sử dụng gRPC thay vì REST ?" Để trả lời được cho câu hỏi này thì bạn cần phải tìm hiểu thêm về <a href="https://developers.google.com/protocol-buffers/docs/overview">Protobuf</a>, bởi vì <a href="https://grpc.io/">gRPC</a> sử dụng nó và có nhiều lý do để chọn Protobuf hơn là JSON truyền thống nhưng mà lý do mà mình ấn tượng nhất là tốc độ của nó thật sự rất nhanh (một phần là vì dung lượng gói tin của nó nhỏ gọn và truyền tải theo binary nên cực kỳ tối ưu cho máy tính), bên dưới là một bài test về tốc độ giữa protobuf với json bạn có thể xem thêm ở đây <a href="https://auth0.com/blog/beating-json-performance-with-protobuf/">[link]</a>.<br>
+<img src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/non-compressed-env-times.png" alt="non-compressed-env-times" data-action="zoom"></p>
+<h1 id="grpcweblg">gRPC-Web là gì?</h1>
+<p>Quay trở lại câu hỏi đầu bài nào! Thế thì còn gRPC-Web là gì? Ta đã biết gRPC là một RPC framework do Google phát triển và sử dụng Protobuf để tranfer data thay vì JSON/XML truyền thống nên tốc độ được gia tăng đáng kể, gRPC hỗ trợ rất nhiều ngôn ngữ lập trình để tích hợp trên mobile, backend service và cả trên trình duyệt. Và trong bài viết này mình muốn giới thiệu với các bạn về <a href="https://grpc.io/docs/languages/web/quickstart/">gRPC-Web</a>, một thư viện Javascript hỗ trợ trình duyệt giao tiếp với gRPC service.</p>
+<h1 id="sdngvireactjsnhthno">Sử dụng với React JS như thế nào?</h1>
+<p>Bởi vì gRPC-Web không hỗ trợ HTTP/2 vì vậy chúng ta cần một gateway proxy, thường chúng ta sẽ sử dụng <a href="https://www.envoyproxy.io/">Envoy</a> để translate request từ HTTP/1 sang HTTP/2. Đồng thời Envoy cũng sẽ hỗ trợ cấu hình cho phép CORS request. Chúng ta có thể build một Envoy proxy dễ dàng với Docker thông qua file cấu hình <em>envoy.yaml</em> và chạy nó với câu lệnh sau:</p>
+<pre class="line-numbers  language-bash"><code class="  language-bash">docker run -d -v "$(pwd)"/envoy.yaml:/etc/envoy/envoy.yaml:ro \
+    -p 8080:8080 -p 9901:9901 envoyproxy/envoy:v1.15.0
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Bây giờ để minh hoạ cho việc chạy gRPC-Web trên React JS mình sẽ tạo ra một gRPC service nhỏ bằng NodeJS sẽ nhận vào request là tên một người và response trả về sẽ là lời chào "Hello! + &lt;tên người đó&gt;". Đầu tiên chúng ta cần định nghĩa ra file proto như bên dưới:</p>
+<pre class="line-numbers  language-protobuf"><code class="  language-protobuf">syntax = "proto3";
+
+package helloworld;
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply);
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Để build một server gRPC với NodeJS chúng ta cần sử dụng proto-loader để load file proto của chúng ta lên và grpc-js để implement các service mà ta đã định nghĩa trong file proto.</p>
+<pre class="line-numbers  language-js"><code class="  language-js"><span class="token keyword">var</span> <span class="token constant">PROTO_PATH</span> <span class="token operator">=</span> __dirname <span class="token operator">+</span> <span class="token string">"/helloworld.proto"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> assert <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"assert"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> <span class="token keyword">async</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"async"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> _ <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"lodash"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> grpc <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"@grpc/grpc-js"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> protoLoader <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"@grpc/proto-loader"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> packageDefinition <span class="token operator">=</span> protoLoader<span class="token punctuation">.</span><span class="token function">loadSync</span><span class="token punctuation">(</span><span class="token constant">PROTO_PATH</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  keepCase<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  longs<span class="token punctuation">:</span> String<span class="token punctuation">,</span>
+  enums<span class="token punctuation">:</span> String<span class="token punctuation">,</span>
+  defaults<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  oneofs<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> protoDescriptor <span class="token operator">=</span> grpc<span class="token punctuation">.</span><span class="token function">loadPackageDefinition</span><span class="token punctuation">(</span>packageDefinition<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> helloworld <span class="token operator">=</span> protoDescriptor<span class="token punctuation">.</span>helloworld<span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @param {!Object} call
+ * @param {function():?} callback
+ */</span>
+<span class="token keyword">function</span> <span class="token function">doSayHello</span><span class="token punctuation">(</span>call<span class="token punctuation">,</span> callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> message<span class="token punctuation">:</span> <span class="token string">"Hello! "</span> <span class="token operator">+</span> call<span class="token punctuation">.</span>request<span class="token punctuation">.</span>name <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Tiếp theo để biên dịch file proto này thành code Javascript để trình duyệt có thể đọc được chúng ta cần sử dụng một compiler tên là protoc, các bạn có thể cài đặt theo hướng dẫn ở đây <a href="https://grpc.io/docs/protoc-installation/">[link]</a>. Sau khi cài đặt thành công thì chúng ta tiến hành biên dịch bằng cách chạy câu lệnh sau:</p>
+<pre class="line-numbers  language-bash"><code class="  language-bash">protoc -I=. helloworld.proto \
+  --js_out=import_style=commonjs:. \
+  --grpc-web_out=import_style=commonjs,mode=grpcwebtext:.
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Cuối cùng việc còn lại là implement các file grpc được biên dịch ra từ tool protoc vào ứng dụng React JS</p>
+<pre class="line-numbers  language-js"><code class="  language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> GreeterClient <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../rpc/helloworld_grpc_web_pb.js'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> HelloRequest<span class="token punctuation">,</span> RepeatHelloRequest <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../rpc/helloworld_pb.js'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token constant">URL</span> <span class="token operator">=</span> <span class="token string">"http://"</span> <span class="token operator">+</span> window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>hostname <span class="token operator">+</span> <span class="token string">":8080"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GreeterClient</span><span class="token punctuation">(</span><span class="token constant">URL</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> metadata <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">'custom-header-1'</span><span class="token punctuation">:</span> <span class="token string">'value1'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  sayHello<span class="token punctuation">:</span> <span class="token punctuation">(</span>name<span class="token punctuation">,</span> callback<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HelloRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    request<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    client<span class="token punctuation">.</span><span class="token function">sayHello</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> metadata<span class="token punctuation">,</span> callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  sayRepeatHello<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> name<span class="token punctuation">,</span> count <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> streamRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RepeatHelloRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    streamRequest<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    streamRequest<span class="token punctuation">.</span><span class="token function">setCount</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> client<span class="token punctuation">.</span><span class="token function">sayRepeatHello</span><span class="token punctuation">(</span>streamRequest<span class="token punctuation">,</span> metadata<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Như vậy là chúng ta đã cùng nhau tìm hiểu xong các vấn đề xoay quanh liên quan đến gRPC-Web và cách triển khai nó, nếu như bạn vẫn đang sử dụng REST trước giờ như mình thì hãy cân nhắc việc chuyển sang sử dụng gRPC, việc triển khai trên môi trường web application là hoàn toàn khả thi. Dưới đây là đường link repo github chứa full code demo nếu bạn cần tham khảo chi tiết.</p>
+<p>Source code demo: <a href="https://github.com/ozuit/react-grpc-web">https://github.com/ozuit/react-grpc-web</a></p>
+
+
+        
+<div class="post-tags u-marginTop30">
+        <a href="http://engineering.zalopay.vn/tag/grpc-web/" title="grpc-web" class="button tag-button">grpc-web</a>
+        <a href="http://engineering.zalopay.vn/tag/grpc/" title="grpc" class="button tag-button">grpc</a>
+        <a href="http://engineering.zalopay.vn/tag/reactjs/" title="reactjs" class="button tag-button">reactjs</a>
+</div>
+
+
+        <div class="row u-marginTop30 prev-next">
+    <div class="col s12 m6">
+        <a href="https://engineering.zalopay.vn/otp-cua-vng-duoc-sinh-ra-nhu-the-nao/" class="prev-next-link u-block u-marginBottom10">
+            <span class="prev-next-span u-block"><i class="i-arrow-round-prev u-fontSizeLarge arrow-left"></i> Prev article</span>
+            <h5 class="prev-next-title">OTP của VNG được sinh ra như thế nào?</h5>
+        </a>
+    </div>
+
+    <div class="col s12 m6">
+    </div>
+</div>
+
+        <div class="row mob-share u-marginTop30 u-hide-after-lg">
+    <div class="col s6">
+        <a href="https://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/#" class="mapache-share i-facebook bg-facebook u-fontSize20" data-share="facebook" data-url="http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/"> <span class="share-title">SHARE</span></a>
+    </div>
+
+    <div class="col s6">
+        <a href="https://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/#" class="mapache-share i-twitter bg-twitter u-fontSize20" data-share="twitter" data-url="http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/" data-title="Hướng dẫn tích hợp gRPC-Web vào React JS app "> <span class="share-title">TWEET</span></a>
+    </div>
+</div>
+
+        <hr class="post-footer-hr">
+
+        
+
+    </div>
+</article>
+
+
+
+<div class="post-comments-overlay u-absolute0 toggle-comments"></div>
+
+
+
+        </div>
+
+        <aside class="sidebar col-right sidebar-sticky u-hide-before-lg" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+                
+
+    
+    
+
+
+
+    
+<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 1183px;"><div class="sidebar-items u-marginBottom30 u-flexColumn">
+    <h3 class="sidebar-title u-fontSizeBase u-textColorDarker u-marginBottom20 u-fontWeightBolder"><span class="u-paddingBottom10 u-inlineBlock">Latest Articles</span></h3>
+
+    <div class="sidebar-post mapache-tracking u-relative u-flex" data-event-category="Author" data-event-action="Sidebar - Latest articles" data-event-label="http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/" data-event-non-interaction="1">
+        <span class="u-flex0 sidebar-border u-flexCenter u-fontSize40 u-fontWeightSemibold">1</span>
+        <h3 class="u-padding15 u-flex1 u-fontSize15 u-fontWeightBold u-lineHeightTight">Hướng dẫn tích hợp gRPC-Web vào React JS app</h3>
+        <a href="http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/" class="u-absolute0 u-zindex2"></a>
+    </div>
+    <div class="sidebar-post mapache-tracking u-relative u-flex" data-event-category="Author" data-event-action="Sidebar - Latest articles" data-event-label="http://engineering.zalopay.vn/otp-cua-vng-duoc-sinh-ra-nhu-the-nao/" data-event-non-interaction="1">
+        <span class="u-flex0 sidebar-border u-flexCenter u-fontSize40 u-fontWeightSemibold">2</span>
+        <h3 class="u-padding15 u-flex1 u-fontSize15 u-fontWeightBold u-lineHeightTight">OTP của VNG được sinh ra như thế nào?</h3>
+        <a href="http://engineering.zalopay.vn/otp-cua-vng-duoc-sinh-ra-nhu-the-nao/" class="u-absolute0 u-zindex2"></a>
+    </div>
+    <div class="sidebar-post mapache-tracking u-relative u-flex" data-event-category="Author" data-event-action="Sidebar - Latest articles" data-event-label="http://engineering.zalopay.vn/su-dung-git-rebase-mot-cach-hieu-qua/" data-event-non-interaction="1">
+        <span class="u-flex0 sidebar-border u-flexCenter u-fontSize40 u-fontWeightSemibold">3</span>
+        <h3 class="u-padding15 u-flex1 u-fontSize15 u-fontWeightBold u-lineHeightTight">Sử dụng Git Rebase một cách hiệu quả</h3>
+        <a href="http://engineering.zalopay.vn/su-dung-git-rebase-mot-cach-hieu-qua/" class="u-absolute0 u-zindex2"></a>
+    </div>
+    <div class="sidebar-post mapache-tracking u-relative u-flex" data-event-category="Author" data-event-action="Sidebar - Latest articles" data-event-label="http://engineering.zalopay.vn/spring-batch-framework-xu-ly-bo-gon-nhe-va-toan-dien/" data-event-non-interaction="1">
+        <span class="u-flex0 sidebar-border u-flexCenter u-fontSize40 u-fontWeightSemibold">4</span>
+        <h3 class="u-padding15 u-flex1 u-fontSize15 u-fontWeightBold u-lineHeightTight">Spring Batch - Framework xử lý bó gọn nhẹ và toàn diện</h3>
+        <a href="http://engineering.zalopay.vn/spring-batch-framework-xu-ly-bo-gon-nhe-va-toan-dien/" class="u-absolute0 u-zindex2"></a>
+    </div>
+    <div class="sidebar-post mapache-tracking u-relative u-flex" data-event-category="Author" data-event-action="Sidebar - Latest articles" data-event-label="http://engineering.zalopay.vn/rabbitmq-gioi-thieu-mo-hinh-va/" data-event-non-interaction="1">
+        <span class="u-flex0 sidebar-border u-flexCenter u-fontSize40 u-fontWeightSemibold">5</span>
+        <h3 class="u-padding15 u-flex1 u-fontSize15 u-fontWeightBold u-lineHeightTight">RabbitMQ: Giới thiệu, mô hình và cách hoạt động</h3>
+        <a href="http://engineering.zalopay.vn/rabbitmq-gioi-thieu-mo-hinh-va/" class="u-absolute0 u-zindex2"></a>
+    </div>
+
+</div><div class="sidebar-items u-marginBottom30">
+    <h3 class="sidebar-title u-fontSizeBase u-textColorDarker u-marginBottom20 u-fontWeightBolder"><span class="u-paddingBottom10 u-inlineBlock">Tag Cloud</span></h3>
+
+        <a href="http://engineering.zalopay.vn/tag/distributed/" title="distributed" class="button tag-button">distributed</a>
+        <a href="http://engineering.zalopay.vn/tag/database/" title="database" class="button tag-button">database</a>
+        <a href="http://engineering.zalopay.vn/tag/distributed-system/" title="distributed system" class="button tag-button">distributed system</a>
+        <a href="http://engineering.zalopay.vn/tag/tidb/" title="TiDB" class="button tag-button">TiDB</a>
+        <a href="http://engineering.zalopay.vn/tag/backend/" title="backend" class="button tag-button">backend</a>
+        <a href="http://engineering.zalopay.vn/tag/raft/" title="raft" class="button tag-button">raft</a>
+        <a href="http://engineering.zalopay.vn/tag/distributed-database/" title="distributed database" class="button tag-button">distributed database</a>
+        <a href="http://engineering.zalopay.vn/tag/golang/" title="golang" class="button tag-button">golang</a>
+        <a href="http://engineering.zalopay.vn/tag/2pc/" title="2PC" class="button tag-button">2PC</a>
+        <a href="http://engineering.zalopay.vn/tag/distributed-transaction/" title="distributed transaction" class="button tag-button">distributed transaction</a>
+</div><div class="widget-twitter sidebar-items u-hide">
+        <h3 class="sidebar-title u-fontSizeBase u-textColorDarker u-marginBottom20 u-fontWeightBolder">
+            <span class="u-paddingBottom10 u-inlineBlock">Recents Tweets</span>
+        </h3>
+    </div></div></aside>
+    </div>
+    
+<div id="disqus_thread"><iframe id="dsq-app1937" name="dsq-app1937" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/saved_resource(1).html" horizontalscrolling="no" verticalscrolling="no" style="height: 395px !important;"></iframe></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://https-engineering-zalopay-vn.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+
+</section>
+
+
+
+<section class="post-related u-backgroundWhite u-paddingTop30 u-paddingBottom20 u-overflowHidden">
+    <div class="extreme-container">
+        <div class="row story-card">
+
+
+            <div class="col s12 m6 l4">
+                <article class="story u-flex u-relative story--grid ">
+    <div class="story-image u-relative u-overflowHidden u-backgroundColorGrayLight">
+        <a href="https://engineering.zalopay.vn/xay-dung-sql-parser-service/" class="story-image-lazy u-absolute0 u-block story-img-bg image-hover u-backgroundSizeCover" data-original="/content/images/2019/11/flow-ZPD-1.png" style="background-image: url(&quot;/content/images/2019/11/flow-ZPD-1.png&quot;);"></a>
+
+    </div>
+
+    <div class="story-body u-flexColumn u-marginTop20 u-relative">
+        <div class="flow-meta u-fontSizeSmallest u-flexCenter">
+            
+                <a href="https://engineering.zalopay.vn/tag/backend/" class="link--underline u-fontWeightBolder u-textUppercase story-category u-relative zindex4">backend</a>
+                <span class="point">/</span>
+            
+
+            <span><time class="datetime" datetime=" 2019-11-25 ">10 months ago</time></span>
+        </div>
+
+        <h2 class="u-contentTitle u-fontSize20 u-lineHeightTight u-marginBottom10">
+            <a href="https://engineering.zalopay.vn/xay-dung-sql-parser-service/" class="u-relative zindex4">Xây dựng SQL service sử dụng TiKV làm storage</a>
+        </h2>
+
+
+        <a href="https://engineering.zalopay.vn/xay-dung-sql-parser-service/" class="u-absolute0 u-zindex2"></a>
+    </div>
+
+</article>
+            </div>
+
+
+            <div class="col s12 m6 l4">
+                <article class="story u-flex u-relative story--grid ">
+    <div class="story-image u-relative u-overflowHidden u-backgroundColorGrayLight">
+        <a href="https://engineering.zalopay.vn/docker-grpc-gateway/" class="story-image-lazy u-absolute0 u-block story-img-bg image-hover u-backgroundSizeCover" data-original="/content/images/2019/06/1_OcN044CAmcExKvH7RvaQfA-1.png" style="background-image: url(&quot;/content/images/2019/06/1_OcN044CAmcExKvH7RvaQfA-1.png&quot;);"></a>
+
+    </div>
+
+    <div class="story-body u-flexColumn u-marginTop20 u-relative">
+        <div class="flow-meta u-fontSizeSmallest u-flexCenter">
+            
+                <a href="https://engineering.zalopay.vn/tag/docker/" class="link--underline u-fontWeightBolder u-textUppercase story-category u-relative zindex4">docker</a>
+                <span class="point">/</span>
+            
+
+            <span><time class="datetime" datetime=" 2019-06-03 ">a year ago</time></span>
+        </div>
+
+        <h2 class="u-contentTitle u-fontSize20 u-lineHeightTight u-marginBottom10">
+            <a href="https://engineering.zalopay.vn/docker-grpc-gateway/" class="u-relative zindex4">Sử dụng Docker để xây dựng grpc-gateway</a>
+        </h2>
+
+
+        <a href="https://engineering.zalopay.vn/docker-grpc-gateway/" class="u-absolute0 u-zindex2"></a>
+    </div>
+
+</article>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+
+
+<div class="instagram u-overflowHidden u-hide u-relative u-backgroundWhite">
+    <div class="instagram-wrap row"></div>
+    <span class="instagram-name u-absolute"></span>
+</div>
+</main>
+
+    <footer class="footer u-fontSizeSmaller u-fontWeightBold">
+    <div class="footer-links">
+
+        <div class="extreme-container u-flexCenter u-flexColumn">
+            <aside class="follow followMe u-textColorWhite u-fontSize20 u-textAlignCenter">
+                
+                
+                
+            </aside>
+
+            <ul class="footer-menu u-textUppercase u-textAlignCenter u-marginTop20 u-hide"></ul>
+        </div>
+
+
+    </div>
+
+    <div class="footer-copy u-textAlignCenter">
+        © 2020 <a href="http://engineering.zalopay.vn/">ZaloPay Engineering</a>
+        Design with <i class="i-favorite animated infinite pulse" style="color:red;display:inline-block"></i> by <a href="https://goo.gl/Jf1tZe" target="_blank" title="Developer FullStack.">@GodoFredoNinja</a>
+    </div>
+</footer>
+
+    <div class="search u-fixed">
+    <form class="search-form u-relative u-sizeFullWidth u-marginAuto u-marginBottom20">
+        <input id="search-field" class="u-sizeFullWidth u-md-fontSizeBase u-fontSize40 u-fontWeightSemibold" type="text" placeholder="Search...">
+    </form>
+
+    <div id="searchResults" class="search-results u-marginAuto u-sizeFullWidth"></div>
+</div>
+
+    <div class="loadingBar"></div>
+
+    
+
+    <script src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/jquery.min.js"></script>
+
+    
+
+    <script src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/main.js"></script>
+
+    
+<div id="fb-root"></div>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://engineering.zalopay.vn/using-grpc-web-to-call-api-from-grpc-server-in-react-application/';
+        this.page.identifier = 'ghost-5f62e3f525669300012f2d4c';
+    };
+
+    var $showComments = $('.post-comments-show');
+
+    (function(d, s, id) {
+        if (typeof disqusShortName !== 'undefined') {
+            $('.mapache-disqus').removeClass('u-hide');
+            $showComments.removeClass('u-hide');
+
+            var js = d.createElement(s);
+            js.src = 'https://'+disqusShortName+'.disqus.com/embed.js';
+            js.async = true;
+
+            js.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(js);
+        } else if (typeof facebookLocaleComments !== 'undefined') {
+            $('.mapache-facebook').removeClass('u-hide');
+            $showComments.removeClass('u-hide');
+
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/'+facebookLocaleComments+'/sdk.js#xfbml=1&version=v3.1';
+            js.async = true;
+            fjs.parentNode.insertBefore(js, fjs);
+        } else {
+            $showComments.remove();
+        }
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+    <script>
+        Prism.plugins.autoloader.languages_path = 'http://engineering.zalopay.vn/assets/scripts/components/';
+        $('.post-body').find('pre').addClass('line-numbers');
+    </script>
+
+    <script>WebFontConfig ={google:{families:['Ruda:400,700,900','Merriweather:300,400,700','Fira+Mono:400']}};(function(){var wf=document.createElement('script');wf.src='https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js';wf.type='text/javascript';wf.async='true';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(wf,s);})();</script>
+
+
+<iframe style="display: none;" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/saved_resource(2).html"></iframe><iframe id="nr-ext-rsicon" style="position: absolute; display: none; width: 50px; height: 50px; z-index: 2147483647; border-style: none; background: transparent;" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/saved_resource(3).html"></iframe><div id="eJOY__extension_root" class="eJOY__extension_root_class" style="all: unset;"></div><div id="gy2I1mi-1600683232201" class="" style="display: block !important;"><iframe id="Uq6PIIO-1600683232202" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/saved_resource(4).html" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: auto !important; right: auto !important; bottom: auto !important; left: auto !important; position: static !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 350px !important; z-index: 999999 !important; cursor: auto !important; float: none !important; border-radius: unset !important; pointer-events: auto !important; display: none !important; height: 120px !important;"></iframe><iframe id="xI8cF40-1600683232202" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/saved_resource(5).html" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; position: fixed !important; border: 0px !important; padding: 0px !important; transition-property: none !important; z-index: 1000001 !important; cursor: auto !important; float: none !important; pointer-events: auto !important; box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 10px 0px !important; height: 60px !important; min-height: 60px !important; max-height: 60px !important; width: 60px !important; min-width: 60px !important; max-width: 60px !important; border-radius: 50% !important; transform: rotate(0deg) translateZ(0px) !important; transform-origin: 0px center 0px !important; margin: 0px !important; top: auto !important; bottom: 20px !important; right: 20px !important; left: auto !important; display: block !important;"></iframe><iframe id="m2b2oZb-1600683232202" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/saved_resource(6).html" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; position: fixed !important; border: 0px !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; display: none !important; z-index: 1000003 !important; cursor: auto !important; float: none !important; border-radius: unset !important; pointer-events: auto !important; top: auto !important; bottom: 60px !important; right: 15px !important; left: auto !important; width: 21px !important; max-width: 21px !important; min-width: 21px !important; height: 21px !important; max-height: 21px !important; min-height: 21px !important;"></iframe><iframe id="eLaPcrP-1600683232203" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/saved_resource(7).html" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; position: fixed !important; border: 0px !important; padding: 0px !important; transition-property: none !important; cursor: auto !important; float: none !important; border-radius: unset !important; pointer-events: auto !important; transform: rotate(0deg) translateZ(0px) !important; transform-origin: 0px center 0px !important; bottom: 30px !important; top: auto !important; right: 0px !important; left: auto !important; width: 124px !important; max-width: 124px !important; min-width: 124px !important; height: 95px !important; max-height: 95px !important; min-height: 95px !important; z-index: 1000002 !important; margin: 0px !important; display: none !important;"></iframe><div class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: auto !important; bottom: auto !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 100% !important; height: 100% !important; display: none !important; z-index: 1000001 !important; cursor: move !important; float: left !important; border-radius: unset !important; pointer-events: auto !important;"></div><div id="CXh7i8L-1600683232201" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: auto !important; bottom: auto !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 6px !important; height: 100% !important; display: block !important; z-index: 999998 !important; cursor: w-resize !important; float: none !important; border-radius: unset !important; pointer-events: auto !important;"></div><div id="RCgT1iK-1600683232201" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: 0px !important; bottom: auto !important; left: auto !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 100% !important; height: 6px !important; display: block !important; z-index: 999998 !important; cursor: n-resize !important; float: none !important; border-radius: unset !important; pointer-events: auto !important;"></div><div id="QrJ3GhB-1600683232202" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; top: 0px !important; right: auto !important; bottom: auto !important; left: 0px !important; position: absolute !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 12px !important; height: 12px !important; display: block !important; z-index: 999998 !important; cursor: nw-resize !important; float: none !important; border-radius: unset !important; pointer-events: auto !important;"></div><iframe id="b1B4vtu-1600683232416" src="./Hướng dẫn tích hợp gRPC-Web vào React JS app_files/saved_resource(8).html" frameborder="0" scrolling="no" title="chat widget" class="" style="outline: none !important; visibility: visible !important; resize: none !important; box-shadow: none !important; overflow: visible !important; background: none transparent !important; opacity: 1 !important; position: fixed !important; border: 0px !important; min-height: auto !important; min-width: auto !important; max-height: none !important; max-width: none !important; padding: 0px !important; margin: 0px !important; transition-property: none !important; transform: none !important; width: 378px !important; height: 876px !important; display: none !important; z-index: 999999 !important; cursor: auto !important; float: none !important; border-radius: unset !important; pointer-events: auto !important; bottom: 100px !important; top: auto !important; right: 20px !important; left: auto !important;"></iframe></div></body></html>
